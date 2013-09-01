@@ -1,3 +1,10 @@
+# Learn to Program: The Fundamentals  by Jennifer Campbell, Paul Gries
+
+# Assignment  - 1 
+# Abhishek Anand
+# Due Date - Mon 2 Sep 2013 8:59 AM PDT (UTC -0700)
+
+
 def seconds_difference(time_1, time_2):
     """ (number, number) -> number
 
@@ -13,7 +20,7 @@ def seconds_difference(time_1, time_2):
     >>> seconds_difference(1800.0, 1800.0)
     0.0
     """
-    
+    return time_2 - time_1 
 
 
 def hours_difference(time_1, time_2):
@@ -31,7 +38,7 @@ def hours_difference(time_1, time_2):
     >>> hours_difference(1800.0, 1800.0)
     0.0
     """
-
+    return ((time_2 - time_1)/(60 * 60)) # Dividing Time difference in second by 3600 As 1hour = 3600 Second 
 
 
 def to_float_hours(hours, minutes, seconds):
@@ -49,6 +56,9 @@ def to_float_hours(hours, minutes, seconds):
     >>> to_float_hours(1, 0, 36)
     1.01
     """
+    return hours + minutes / 60 + seconds /(60 * 60) # Converting values reciveid in Hour, Minute and Second to a float quantity
+    # By Adding together the Hour Vaule . 
+
 
 
 
@@ -77,18 +87,55 @@ def to_24_hour_clock(hours):
 
 
 ### Write your get_hours function definition here:
+def get_hours(seconds):
+   """ (number) -> number
+
+    hours is a number of hours since midnight. Return the
+    hour as seen on a 24-hour clock.
+
+    Precondition: hours >= 0
+
+    >>> get_hours(3800)
+    1
+    """
+   return to_24_hour_clock(seconds // 3600) #[3800//3600 = 1]
 
 
 
 
 ### Write your get_minutes function definition here:
+def get_minutes (seconds):
 
+   """ (number) -> number
 
+    The parameter is a number of seconds since midnight. Return the
+    number of minutes that have elapsed since midnight as seen on a 
+    clock. (This means that the return value should be in the range
+    0 to 59, inclusive.)
 
+    Precondition: hours >= 0
+
+    >>> get_minutes(3800)
+    3
+    """
+   return ((seconds % 3600) // 60) #[3800 % 3600 = 200 ; 200//60 =3 ]
 
 ### Write your get_seconds function definition here:
+def get_seconds (seconds):
 
+   """ (number) -> number
 
+    The parameter is a number of seconds since midnight. Return the 
+    number of seconds that have elapsed since midnight as seen on a 
+    clock. (This means that the return value should be in the range 
+    0 to 59, inclusive.)
+
+    Precondition: hours >= 0
+
+   >>> get_seconds(3800)
+    20
+    """
+   return ((seconds % 3600)% 60) #[3800 % 3600 = 200 ; 200 % 60 =20 ]
 
 
 def time_to_utc(utc_offset, time):
@@ -110,6 +157,7 @@ def time_to_utc(utc_offset, time):
     >>> time_to_utc(-1, 23.0)
     0.0
     """
+    return (time - utc_offset)% 24
 
 
 
@@ -135,6 +183,7 @@ def time_from_utc(utc_offset, time):
     >>> time_from_utc(+1, 23.0)
     0.0
     """
+    return (time + utc_offset)% 24
 
 
 
